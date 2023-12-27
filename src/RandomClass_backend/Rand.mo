@@ -1,6 +1,8 @@
 import Blob "mo:base/Blob";
 import Nat8 "mo:base/Nat8";
 import Buffer "mo:base/Buffer";
+import Array "mo:base/Array";
+import Prim "mo:⛔";
 
 module {
   public class Rand() = this {
@@ -44,6 +46,15 @@ module {
       };
       Buffer.toArray(tempBuffer);
     };
+
+    func fromBlob(b : Blob) : Principal = Prim.principalOfBlob b;
+
+    public func principal() : async Principal {
+      let a = Blob.toArray(await raw_rand()); 
+      let array = Array.subArray<Nat8>(a, 0, 28); 
+      fromBlob(Blob.fromArray(array));
+    };
+
   };
 
 };

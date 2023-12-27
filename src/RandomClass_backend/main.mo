@@ -1,9 +1,14 @@
 import Rand "Rand";
 import Array "mo:base/Array";
 import Buffer "mo:base/Buffer";
+
+
 actor {
+ 
+  
   
   let random = Rand.Rand();
+  random.setRange(2,3);
   
   public func setRange(a: Nat, b: Nat):async (){
     random.setRange(a, b);
