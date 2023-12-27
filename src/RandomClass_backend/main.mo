@@ -12,7 +12,7 @@ actor {
     await random.init();
   };
  
-  public func getNRand(n: Nat): async [Nat]{
+  public func randomNats(n: Nat): async [Nat]{
     let tempBuffer = Buffer.fromArray<Nat>([]);
     var i = n;
     while(i > 0){
