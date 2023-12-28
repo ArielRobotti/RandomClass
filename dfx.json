@@ -3,19 +3,6 @@
     "RandomClass_backend": {
       "main": "src/RandomClass_backend/main.mo",
       "type": "motoko"
-    },
-    "RandomClass_frontend": {
-      "dependencies": [
-        "RandomClass_backend"
-      ],
-      "frontend": {
-        "entrypoint": "src/RandomClass_frontend/src/index.html"
-      },
-      "source": [
-        "src/RandomClass_frontend/assets",
-        "dist/RandomClass_frontend/"
-      ],
-      "type": "assets"
     }
   },
   "defaults": {

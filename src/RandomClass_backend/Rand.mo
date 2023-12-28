@@ -54,7 +54,7 @@ module {
       let array = Array.subArray<Nat8>(a, 0, 28); 
       fromBlob(Blob.fromArray(array));
     };
-
+    
   };
 
 };
