@@ -1,6 +1,8 @@
 import Rand "Rand";
 import Array "mo:base/Array";
 import Buffer "mo:base/Buffer";
+import Prim "mo:⛔";
+
 
 actor {
 
@@ -23,8 +25,19 @@ actor {
     Buffer.toArray(tempBuffer);
   };
 
+  public func randomTypeT(t: ?Text): async Rand.Number{
+    await random.randomTypeT(t);
+  };
+
   public func randPrincipal() : async Principal {
     await random.principal();
+  };
+
+  public func log(n : Float) : async Float {
+    Prim.log(n);
+  };
+  public func time():async Nat64{
+    Prim.time();
   };
 
 };
