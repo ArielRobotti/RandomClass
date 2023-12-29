@@ -33,11 +33,4 @@ actor {
     await random.principal();
   };
 
-  public func log(n : Float) : async Float {
-    Prim.log(n);
-  };
-  public func time():async Nat64{
-    Prim.time();
-  };
-
 };
