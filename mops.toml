@@ -2,7 +2,7 @@
 name = "random-class"
 version = "1.0.0"
 description = "Class to easily instantiate random number generator objects."
-repository = "https://github.com/ArielRobotti/RandomClass/tree/clean"
+repository = "https://github.com/ArielRobotti/RandomClass/tree/master"
 keywords = [
   "Random",
   "RandomArray",
