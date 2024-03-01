@@ -1,5 +1,3 @@
-// import Blob "mo:base/Blob";
-// import Nat8 "mo:base/Nat8";
 import Buffer "mo:base/Buffer";
 import Array "mo:base/Array";
 import Prim "mo:⛔";
@@ -13,7 +11,7 @@ module {
     var range : Nat = 256;
     var bias : Nat = 0;
 
-    func init() : async () {
+    func loadStore() : async () {
       let blob = Prim.blobToArray(await raw_rand());
       for (i in blob.keys()) {
         store += (256 ** i * Prim.nat8ToNat(blob[i]));
@@ -31,7 +29,7 @@ module {
     };
 
     public func next() : async Nat {
-      if (store == 0) { await init() };
+      if (store == 0) { await loadStore() };
       let result = store % range + bias;
       store /= range;
       result;
@@ -45,6 +43,33 @@ module {
         i -= 1;
       };
       Buffer.toArray(tempBuffer);
+    };
+
+    public func randRange(a: Nat, b: Nat): async Nat{
+      let rangeBkUp = range;
+      let biasBkUp = bias;
+      setRange(a,b);
+      let result = await next();
+      setRange(biasBkUp, rangeBkUp + biasBkUp);
+      result
+    };
+
+    public func randString(s: Nat): async Text{
+      let chars = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",  
+        "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y",  
+        "Z", "ñ", "a", "b","c", "d", "e", "f", "g", "h", "i", "j", "k", "l",   
+        "m", "n", "o", "p", "q", "r","s", "t", "u", "v", "w", "x", "y", "z", "Ñ"
+        ];
+      var result: Text = "";
+      let rangeBkUp = range;
+      let biasBkUp = bias;
+      setRange(0, chars.size());
+      var i = 0;
+      while (i < s){
+        result := result # chars[await next()];
+        i += 1;
+      };
+      result;
     };
 
     public func principal() : async Principal {

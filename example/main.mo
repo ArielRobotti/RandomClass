@@ -1,7 +1,7 @@
 import Rand "../src/Rand";
 import Array "mo:base/Array";
 import Buffer "mo:base/Buffer";
-import Prim "mo:⛔";
+import Char "mo:base/Char";
 
 
 actor {
@@ -12,14 +12,8 @@ actor {
     random.setRange(a, b);
   };
 
-  public func randomNats(n : Nat) : async [Nat] {
-    let tempBuffer = Buffer.fromArray<Nat>([]);
-    var i = n;
-    while (i > 0) {
-      tempBuffer.add(await random.next());
-      i -= 1;
-    };
-    Buffer.toArray(tempBuffer);
+  public func randArray(n : Nat) : async [Nat] {
+    await random.randArray(n);
   };
 
   public func next(): async Nat{
@@ -29,5 +23,17 @@ actor {
   public func randPrincipal() : async Principal {
     await random.principal();
   };
+
+  public func randRange(a: Nat, b: Nat): async Nat{
+    await random.randRange(a,b);
+  };
+
+  public func fromNat32(c: Nat32): async Text{
+    Char.toText(Char.fromNat32(c));
+  };
+
+  public func randString(s: Nat): async Text{
+    await random.randString(s);
+  }
 
 };
