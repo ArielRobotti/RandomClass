@@ -5,13 +5,6 @@ import Array "mo:base/Array";
 import Prim "mo:⛔";
 
 module {
-  public type Number = {
-      #Nat: Nat;
-      #Nat8: Nat8;
-      #Nat16: Nat16;
-      #Nat32: Nat32;
-      #Nat64: Nat64;
-  };
 
   public class Rand() = this {
     
@@ -19,9 +12,8 @@ module {
     var store : Nat = 0;
     var range : Nat = 256;
     var bias : Nat = 0;
-    //public func getStore() : Nat = store;
 
-    public func init() : async () {
+    func init() : async () {
       let blob = Prim.blobToArray(await raw_rand());
       for (i in blob.keys()) {
         store += (256 ** i * Prim.nat8ToNat(blob[i]));
@@ -45,7 +37,7 @@ module {
       result;
     };
 
-    public func nRandom(n : Nat) : async [Nat] {
+    public func randArray(n : Nat) : async [Nat] {
       let tempBuffer = Buffer.fromArray<Nat>([]);
       var i = n;
       while (i > 0) {
@@ -53,16 +45,6 @@ module {
         i -= 1;
       };
       Buffer.toArray(tempBuffer);
-    };
-    
-    public func randomTypeT(t: ?Text): async Number{
-      return switch(t){
-        case(?"Nat8" ){ #Nat8 (Prim.natToNat8 (await next()))};
-        case(?"Nat16"){ #Nat16(Prim.natToNat16(await next()))};
-        case(?"Nat32"){ #Nat32(Prim.natToNat32(await next()))};
-        case(?"Nat64"){ #Nat64(Prim.natToNat64(await next()))};
-        case(_){ #Nat(await next())};
-      };
     };
 
     public func principal() : async Principal {

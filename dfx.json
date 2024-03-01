@@ -1,14 +1,14 @@
 {
   "canisters": {
-    "RandomClass_backend": {
-      "main": "src/RandomClass_backend/main.mo",
+    "main": {
+      "main": "src/main.mo",
       "type": "motoko"
     }
   },
   "defaults": {
     "build": {
       "args": "",
-      "packtool": ""
+      "packtool": "mops sources"
     }
   },
   "output_env_file": ".env",
