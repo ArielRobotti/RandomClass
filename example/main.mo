@@ -34,6 +34,6 @@ actor {
 
   public func randString(s: Nat): async Text{
     await random.randString(s);
-  }
+  };
 
 };
