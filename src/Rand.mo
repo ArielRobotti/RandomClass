@@ -1,5 +1,3 @@
-import Buffer "mo:base/Buffer";
-import Array "mo:base/Array";
 import Prim "mo:⛔";
 
 module {
@@ -36,13 +34,13 @@ module {
     };
 
     public func randArray(n : Nat) : async [Nat] {
-      let tempBuffer = Buffer.fromArray<Nat>([]);
-      var i = n;
-      while (i > 0) {
-        tempBuffer.add(await next());
-        i -= 1;
+      let a = Prim.Array_init<Nat>(n, 0);
+      var i = 0;
+      while(i < n){ 
+        a[i] := await next(); 
+        i += 1
       };
-      Buffer.toArray(tempBuffer);
+      Prim.Array_tabulate<Nat>(n, func x = a[x]);
     };
 
     public func randRange(a: Nat, b: Nat): async Nat{
@@ -72,7 +70,7 @@ module {
 
     public func principal() : async Principal {
       let a = Prim.blobToArray(await raw_rand()); 
-      let array = Array.subArray(a, 0, 28); 
+      let array = Prim.Array_tabulate<Nat8>(28, func x = a[x]);
       Prim.principalOfBlob(Prim.arrayToBlob(array));
     };
   };
