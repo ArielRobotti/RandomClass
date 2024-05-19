@@ -1,6 +1,6 @@
 [package]
 name = "random"
-version = "1.0.0"
+version = "2.0.0"
 description = "Updating and removing dependencies from the random-class package"
 repository = "https://github.com/ArielRobotti/RandomClass"
 keywords = [ "Random", "RandomArray", "PrincipalGenerate", "RandRange" ]
